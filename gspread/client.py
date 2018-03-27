@@ -129,8 +129,8 @@ class Client(BaseClient):
         while True:
             param = {}
             if page_token:
-                param['pageToken'] = page_token
-            feed = self.get_spreadsheets_feed(param)
+                pageToken = page_token
+            feed = self.get_spreadsheets_feed(pageToken)
             for elem in feed.findall(_ns('entry')):
                 if title is not None:
                     elem_title = elem.find(_ns('title')).text
@@ -143,9 +143,9 @@ class Client(BaseClient):
 
         return result
 
-    def get_spreadsheets_feed(self, visibility='private', projection='full'):
+    def get_spreadsheets_feed(self, visibility='private', projection='full', pageToken):
         url = construct_url('spreadsheets',
-                            visibility=visibility, projection=projection)
+                            visibility=visibility, projection=projection, pageToken=pageToken)
 
         r = self.session.get(url)
         return ElementTree.fromstring(r.content)
