@@ -123,14 +123,23 @@ class Client(BaseClient):
         :returns: a list of :class:`~gspread.Spreadsheet` instances.
 
         """
-        feed = self.get_spreadsheets_feed()
+        
         result = []
-        for elem in feed.findall(_ns('entry')):
-            if title is not None:
-                elem_title = elem.find(_ns('title')).text
-                if elem_title.strip() != title:
-                    continue
-            result.append(Spreadsheet(self, elem))
+        page_token = None
+        while True:
+            param = {}
+            if page_token:
+                param['pageToken'] = page_token
+            feed = self.get_spreadsheets_feed(param)
+            for elem in feed.findall(_ns('entry')):
+                if title is not None:
+                    elem_title = elem.find(_ns('title')).text
+                    if elem_title.strip() != title:
+                        continue
+                result.append(Spreadsheet(self, elem))
+            page_token = feed.get('nextPageToken')
+            if not page_token:
+                break
 
         return result
 
