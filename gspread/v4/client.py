@@ -58,7 +58,7 @@ class Client(BaseClient):
             self,
             method,
             endpoint,
-            params={'maxResults': 1000},
+            params={'pageSize': 2000},
             data=None,
             json=None,
             files=None):
