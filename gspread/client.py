@@ -138,6 +138,7 @@ class Client(BaseClient):
                         continue
                 result.append(Spreadsheet(self, elem))
             page_token = feed.get('nextPageToken')
+            print(page_token)
             if not page_token:
                 break
 
