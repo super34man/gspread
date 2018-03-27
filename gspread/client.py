@@ -127,6 +127,7 @@ class Client(BaseClient):
         result = []
         page_token = None
         while True:
+            print('here')
             param = {}
             if page_token:
                 pageToken = page_token
