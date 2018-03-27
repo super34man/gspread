@@ -55,7 +55,7 @@ def construct_url(feedtype=None,
                   obj=None,
                   visibility='private',
                   projection='full',
-                  maxResults=1000,
+                  pageToken=None,
                   spreadsheet_id=None,
                   worksheet_id=None,
                   cell_id=None,
@@ -75,7 +75,7 @@ def construct_url(feedtype=None,
 
     params = {'visibility': visibility,
               'projection': projection,
-              'maxResults': maxResults,
+              'pageToken': pageToken,
               'spreadsheet_id': (spreadsheet_id if spreadsheet_id
                                  else obj_fields.get('spreadsheet_id')),
               'worksheet_id': (worksheet_id if worksheet_id
