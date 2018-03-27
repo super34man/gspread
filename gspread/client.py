@@ -143,7 +143,7 @@ class Client(BaseClient):
 
         return result
 
-    def get_spreadsheets_feed(self, visibility='private', projection='full', pageToken):
+    def get_spreadsheets_feed(self, pageToken, visibility='private', projection='full'):
         url = construct_url('spreadsheets',
                             visibility=visibility, projection=projection, pageToken=pageToken)
 
