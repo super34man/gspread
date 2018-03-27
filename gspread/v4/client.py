@@ -58,7 +58,7 @@ class Client(BaseClient):
             self,
             method,
             endpoint,
-            params=None,
+            params={maxResults=1000},
             data=None,
             json=None,
             files=None):
@@ -132,8 +132,6 @@ class Client(BaseClient):
         :returns: a list of :class:`~gspread.v4.models.Spreadsheet` instances.
 
         """
-        
-        print('here2')
         spreadsheet_files = self.list_spreadsheet_files()
 
         return [
