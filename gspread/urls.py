@@ -51,13 +51,13 @@ def _extract_fields(patternstr):
     return _field_re.findall(patternstr)
 
 
-# def construct_url(feedtype=None,
-#                   obj=None,
-#                   visibility='private',
-#                   projection='full',
-#                   maxResults=1000,
-#                   spreadsheet_id=None,
-#                   worksheet_id=None,
+def construct_url(feedtype=None,
+                  obj=None,
+                  visibility='private',
+                  projection='full',
+                  maxResults=1000,
+                  spreadsheet_id=None,
+                  worksheet_id=None,
                   cell_id=None,
                   worksheet_version=None):
     """Constructs URL to be used for API request.
@@ -75,6 +75,7 @@ def _extract_fields(patternstr):
 
     params = {'visibility': visibility,
               'projection': projection,
+              'maxResults': maxResults,
               'spreadsheet_id': (spreadsheet_id if spreadsheet_id
                                  else obj_fields.get('spreadsheet_id')),
               'worksheet_id': (worksheet_id if worksheet_id
